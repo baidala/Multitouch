@@ -73,7 +73,14 @@ public class MultiTouchView extends View {
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL:
                 points.remove(pointerId);
-            break;
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                PointF pointF = points.get(event.getPointerId(pointerId));
+                pointF.x = event.getX(pointerId);
+                pointF.y = event.getY(pointerId);
+                break;
+
         }
 
         invalidate();
